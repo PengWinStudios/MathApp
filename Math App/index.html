@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PengWin Studios Math App</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --bg2:#1e293b;
+    --card:#1e293b;
+    --accent:#f97316;
+    --accent2:#fb923c;
+    --text:#e2e8f0;
+    --muted:#94a3b8;
+    --border:#334155;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,var(--bg),var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:2.5rem 1rem;
+    border-bottom:3px solid var(--accent);
+}
+
+header h1{
+    font-size:2.8rem;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-top:.5rem;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:2rem;
+}
+
+.understanding-card{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:1.5rem;
+    margin-bottom:2rem;
+}
+
+.understanding-card h3{
+    color:var(--accent);
+    margin-bottom:1rem;
+}
+
+.progress-bar{
+    width:100%;
+    height:28px;
+    background:#111827;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:.4s;
+}
+
+.progress-text{
+    text-align:center;
+    margin-top:.75rem;
+    font-weight:700;
+}
+
+.header-section{
+    text-align:center;
+    margin-bottom:2rem;
+}
+
+.header-section h2{
+    margin-bottom:.5rem;
+}
+
+.header-section p{
+    color:var(--muted);
+}
+
+.levels-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+}
+
+.level-card{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:2rem;
+    cursor:pointer;
+    transition:.3s;
+    text-align:center;
+}
+
+.level-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--accent);
+}
+
+.level-number{
+    font-size:3rem;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.level-card h2{
+    margin-top:.75rem;
+}
+
+.level-card p{
+    color:var(--muted);
+    margin-top:.75rem;
+}
+
+.welcome-screen{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.97);
+    justify-content:center;
+    align-items:center;
+    padding:2rem;
+    z-index:999;
+}
+
+.welcome-content{
+    width:100%;
+    max-width:800px;
+    background:var(--card);
+    border-radius:18px;
+    padding:2rem;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:.75rem 1rem;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.discovery-card{
+    background:#111827;
+    padding:1.25rem;
+    border-radius:12px;
+    margin-top:1rem;
+}
+
+.discovery-card h3{
+    color:var(--accent);
+    margin-bottom:.5rem;
+}
+
+.equation{
+    font-size:2rem;
+    text-align:center;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.curiosity{
+    border-left:4px solid var(--accent);
+}
+
+.tomorrow{
+    border-left:4px solid #22c55e;
+}
+
+.start-btn{
+    margin-top:1.5rem;
+    width:100%;
+    padding:1rem;
+    border:none;
+    border-radius:12px;
+    background:var(--accent);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    padding:2rem;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>PengWin Studios</h1>
+    <p class="subtitle">One Discovery. Deep Understanding.</p>
+</header>
+
+<div class="container">
+
+```
+<div class="understanding-card">
+    <h3>Deep Understanding Meter</h3>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="understandingFill"></div>
+    </div>
+
+    <div class="progress-text" id="understandingText">
+        0% • Beginning Explorer
+    </div>
+
+    <p style="color:var(--muted);margin-top:1rem;">
+        Progress is earned by truly understanding concepts,
+        not by rushing through content.
+    </p>
+</div>
+
+<div class="header-section">
+    <h2>Select a Discovery Path</h2>
+    <p>Master one concept at a time.</p>
+</div>
+
+<div class="levels-grid" id="levels-grid"></div>
+```
+
+</div>
+
+<div class="welcome-screen" id="welcome-screen">
+
+<button class="close-btn" onclick="closeWelcome()">
+Close
+</button>
+
+<div class="welcome-content">
+
+<h1 id="welcome-title"
+style="color:var(--accent);margin-bottom:1rem;">
+</h1>
+
+<p id="introText"></p>
+
+<div class="discovery-card">
+<h3>Today's Discovery</h3>
+<div class="equation" id="equationDisplay"></div>
+</div>
+
+<div class="discovery-card">
+<h3>Why Does It Matter?</h3>
+<p id="whyText"></p>
+</div>
+
+<div class="discovery-card curiosity">
+<h3> Curiosity Card</h3>
+<p id="curiosityText"></p>
+</div>
+
+<div class="discovery-card">
+<h3>Mini Challenge</h3>
+<p id="challengeText"></p>
+</div>
+
+<div class="discovery-card tomorrow">
+<h3> What You'll Learn Tomorrow</h3>
+<p id="tomorrowText"></p>
+</div>
+
+<button class="start-btn" onclick="completeDiscovery()">
+Complete Discovery (+10 Understanding)
+</button>
+
+</div>
+
+</div>
+
+<footer>
+PengWin Studios Math App • Version 0.2
+</footer>
+
+<script>
+
+let understanding = 0;
+
+const levels = [
+{
+id:1,
+name:"Arithmetic",
+intro:"Arithmetic is the foundation of mathematics. Today focuses on understanding addition deeply.",
+equation:"7 + 5 = 12",
+why:"Used in shopping, sports scores, budgeting and everyday life.",
+curiosity:"Why do humans count in groups of 10? Because most counting systems developed from our ten fingers.",
+challenge:"If you have 8 apples and gain 4 more, how many do you have?",
+tomorrow:"Subtraction: Can numbers go backwards?"
+},
+{
+id:2,
+name:"Pre-Algebra",
+intro:"Patterns and relationships begin to emerge.",
+equation:"3 × (4 + 2) = 18",
+why:"Patterns appear in programming, music and science.",
+curiosity:"Why do parentheses exist? They tell mathematics exactly what to do first.",
+challenge:"What is 5 × (2 + 2)?",
+tomorrow:"Variables: What happens when a number is hidden?"
+},
+{
+id:3,
+name:"Algebra I",
+intro:"Numbers can hide behind symbols.",
+equation:"x + 5 = 12",
+why:"Used in engineering, economics and software development.",
+curiosity:"Why is x used so often? It became a common symbol through historical translations of mathematical texts.",
+challenge:"If x + 3 = 10, what is x?",
+tomorrow:"Equations with variables on both sides."
+},
+{
+id:4,
+name:"Geometry",
+intro:"Shapes describe the structure of our world.",
+equation:"A = πr²",
+why:"Geometry powers architecture, design and computer graphics.",
+curiosity:"Why are honeycombs hexagons? Hexagons store the most space with the least material.",
+challenge:"How many sides does a hexagon have?",
+tomorrow:"Angles and hidden geometric patterns."
+},
+{
+id:5,
+name:"Calculus",
+intro:"Calculus studies motion and change.",
+equation:"d/dx(x²)=2x",
+why:"Used in physics, AI, economics and engineering.",
+curiosity:"How can a curve have an exact slope at a single point?",
+challenge:"What happens to distance when speed increases?",
+tomorrow:"Limits and approaching infinity."
+}
+];
+
+function getRank(){
+
+if(understanding>=90) return "Master Thinker";
+if(understanding>=75) return "Advanced Explorer";
+if(understanding>=50) return "Skilled Learner";
+if(understanding>=25) return "Growing Mind";
+
+return "Beginning Explorer";
+}
+
+function updateUnderstanding(){
+
+document.getElementById("understandingFill").style.width =
+understanding + "%";
+
+document.getElementById("understandingText").textContent =
+understanding + "% • " + getRank();
+}
+
+function completeDiscovery(){
+
+understanding += 10;
+
+if(understanding > 100){
+understanding = 100;
+}
+
+updateUnderstanding();
+
+alert("Great work! Your understanding increased.");
+}
+
+function createLevelCard(level){
+
+const card = document.createElement("div");
+
+card.className = "level-card";
+
+card.innerHTML = `
+<div class="level-number">${level.id}</div>
+<h2>${level.name}</h2>
+<p>Discovery Path ${level.id}</p>
+`;
+
+card.addEventListener("click",()=>{
+showWelcome(level);
+});
+
+return card;
+}
+
+function populateLevels(){
+
+const grid = document.getElementById("levels-grid");
+
+levels.forEach(level=>{
+grid.appendChild(createLevelCard(level));
+});
+
+}
+
+function showWelcome(level){
+
+document.getElementById("welcome-title").textContent = level.name;
+document.getElementById("introText").textContent = level.intro;
+document.getElementById("equationDisplay").textContent = level.equation;
+document.getElementById("whyText").textContent = level.why;
+document.getElementById("curiosityText").textContent = level.curiosity;
+document.getElementById("challengeText").textContent = level.challenge;
+document.getElementById("tomorrowText").textContent = level.tomorrow;
+
+document.getElementById("welcome-screen").style.display = "flex";
+}
+
+function closeWelcome(){
+document.getElementById("welcome-screen").style.display = "none";
+}
+
+window.onload = ()=>{
+populateLevels();
+updateUnderstanding();
+};
+
+</script>
+
+</body>
+</html>
