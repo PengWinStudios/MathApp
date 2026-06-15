@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PengWin Studios Math • Daily Discoveries</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -27,58 +27,63 @@ body{
     min-height:100vh;
     line-height:1.6;
 }
-header{ 
-    text-align:center; 
-    padding:2rem 1rem; 
-    border-bottom:3px solid var(--accent); 
-    position:relative; 
-}
-header h1{ font-size:clamp(1.8rem, 5vw, 2.6rem); }
-.subtitle{ color:var(--muted); margin-top:.5rem; font-size:0.95rem; }
+header{ text-align:center; padding:2.5rem 1rem; border-bottom:3px solid var(--accent); position:relative; }
+header h1{ font-size:2.8rem; }
+.subtitle{ color:var(--muted); margin-top:.5rem; }
 
 .streak{
-    position:absolute; top:15px; right:15px;
-    background:var(--card); padding:6px 14px; border-radius:999px;
-    border:2px solid var(--accent); font-weight:700; font-size:0.9rem;
+    position:absolute; top:20px; right:20px;
+    background:var(--card); padding:8px 16px; border-radius:999px;
+    border:2px solid var(--accent); font-weight:700;
 }
 
-.container{ max-width:1100px; margin:auto; padding:1rem; }
+.container{ max-width:1100px; margin:auto; padding:2rem; }
 
 .understanding-card{
     background:var(--card);
     border:2px solid var(--border);
     border-radius:16px;
-    padding:1.25rem;
+    padding:1.5rem;
     margin-bottom:2rem;
 }
-.progress-bar{ width:100%; height:26px; background:#111827; border-radius:999px; overflow:hidden; }
-.progress-fill{ width:0%; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:.4s; }
-.progress-text{ text-align:center; margin-top:.75rem; font-weight:700; font-size:0.95rem; }
+.progress-bar{
+    width:100%; height:28px; background:#111827; border-radius:999px; overflow:hidden;
+}
+.progress-fill{
+    width:0%; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:.4s;
+}
+.progress-text{ text-align:center; margin-top:.75rem; font-weight:700; }
 
 .subject-grid, .levels-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-    gap:1.25rem;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
 }
 .card{
     background:var(--card);
     border:2px solid var(--border);
     border-radius:16px;
-    padding:1.75rem 1.25rem;
+    padding:2rem;
     cursor:pointer;
     transition:.3s;
     text-align:center;
 }
-.card:hover{ transform:translateY(-6px); border-color:var(--accent); }
+.card:hover{
+    transform:translateY(-8px);
+    border-color:var(--accent);
+}
+.card h2{ margin:1rem 0 .5rem; }
+.card p{ color:var(--muted); }
 
+/* Lesson Modal */
 .welcome-screen{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(15,23,42,.98);
+    background:rgba(15,23,42,.97);
     justify-content:center;
     align-items:center;
-    padding:0.75rem;
+    padding:1rem;
     z-index:999;
     overflow-y:auto;
 }
@@ -87,53 +92,49 @@ header h1{ font-size:clamp(1.8rem, 5vw, 2.6rem); }
     max-width:820px;
     background:var(--card);
     border-radius:18px;
-    padding:1.5rem;
-    max-height:94vh;
+    padding:2rem;
+    max-height:92vh;
     overflow-y:auto;
 }
 .close-btn{
-    position:absolute; top:15px; right:15px;
+    position:absolute; top:20px; right:20px;
     background:transparent; color:var(--text);
-    border:1px solid var(--border); padding:0.6rem 0.9rem;
-    border-radius:10px; cursor:pointer; font-size:1.5rem;
+    border:1px solid var(--border); padding:.75rem 1rem;
+    border-radius:10px; cursor:pointer; font-size:1.4rem;
 }
-
-.lesson-section{ margin-bottom:1.75rem; }
+.lesson-section{ margin-bottom:2rem; }
 .lesson-section h3{
     color:var(--accent);
-    margin-bottom:0.75rem;
+    margin-bottom:1rem;
     border-bottom:2px solid var(--border);
-    padding-bottom:0.4rem;
-    font-size:1.15rem;
+    padding-bottom:0.5rem;
 }
 .equation{
-    font-size:clamp(1.6rem, 4.5vw, 2rem);
+    font-size:2.2rem;
     text-align:center;
     font-weight:800;
     color:var(--accent);
     background:#111827;
-    padding:1rem;
+    padding:1.25rem;
     border-radius:12px;
-    margin:1.25rem 0;
+    margin:1.5rem 0;
 }
 .example{
     background:#111827;
-    padding:1rem;
+    padding:1.25rem;
     border-radius:12px;
-    margin:0.75rem 0;
-    font-size:0.95rem;
+    margin:1rem 0;
 }
+.curiosity{ border-left:4px solid var(--accent); padding-left:1rem; }
+.tomorrow{ border-left:4px solid var(--success); padding-left:1rem; }
 
 .input-group{
-    display:flex; flex-direction:column; gap:0.75rem; margin:1rem 0;
-}
-@media (min-width: 640px) {
-    .input-group{ flex-direction:row; }
+    display:flex; gap:1rem; margin:1rem 0;
 }
 input[type="text"]{
     flex:1; padding:1rem; background:#111827;
     border:2px solid var(--border); border-radius:12px;
-    color:var(--text); font-size:1.05rem;
+    color:var(--text); font-size:1.1rem;
 }
 button{
     padding:1rem 1.5rem; border:none; border-radius:12px;
@@ -141,20 +142,20 @@ button{
     cursor:pointer; transition:.3s;
 }
 button:hover{ background:var(--accent2); }
-
 .feedback{
     margin-top:1rem; padding:1rem; border-radius:12px; font-weight:600;
 }
 .success{ background:rgba(34,197,94,0.2); color:var(--success); }
 .error{ background:rgba(239,68,68,0.2); color:var(--danger); }
 
-.start-btn, .next-btn{
-    margin-top:1.25rem; width:100%; padding:1.1rem; font-size:1.05rem;
+.start-btn{
+    margin-top:1.5rem; width:100%; padding:1.2rem; font-size:1.1rem;
 }
-.next-btn{ background:var(--success); }
-
+.next-btn{
+    background:var(--success); margin-top:0.75rem;
+}
 footer{
-    text-align:center; color:var(--muted); padding:1.5rem; font-size:0.85rem;
+    text-align:center; color:var(--muted); padding:2rem; font-size:0.9rem;
 }
 </style>
 </head>
@@ -175,7 +176,7 @@ footer{
     </div>
 
     <div id="subject-selection">
-        <div style="text-align:center;margin-bottom:2rem;">
+        <div class="header-section" style="text-align:center;margin-bottom:2rem;">
             <h2>Choose Your Subject for Today</h2>
             <p>One subject per day recommended</p>
         </div>
@@ -184,33 +185,250 @@ footer{
 
     <div id="lesson-list" style="display:none;">
         <div style="margin-bottom:1.5rem;">
-            <button onclick="backToSubjects()" style="background:#334155;padding:0.8rem 1.2rem;">← Back to Subjects</button>
+            <button onclick="backToSubjects()" style="background:#334155;">← Back to Subjects</button>
         </div>
         <h2 id="current-subject-title" style="margin-bottom:1rem;color:var(--accent);"></h2>
         <div class="levels-grid" id="lesson-grid"></div>
     </div>
 </div>
 
+<!-- Lesson Modal -->
 <div class="welcome-screen" id="welcome-screen">
     <button class="close-btn" onclick="closeLesson()">✕</button>
     <div class="welcome-content" id="lesson-content"></div>
 </div>
 
-<footer>PengWin Studios Math • One Concept a Day • Version 0.6.1</footer>
+<footer>PengWin Studios Math • One Concept a Day • Version 0.5</footer>
 
 <script>
-// Paste the full JavaScript from the previous version here (the long script block with subjects, functions, streak, etc.)
-// For brevity I'm not repeating all 400+ lines, but use the exact script from my last full code response.
-
+// Persistent data
 let understanding = parseInt(localStorage.getItem('pengwinMathUnderstanding')) || 0;
 let streak = parseInt(localStorage.getItem('pengwinMathStreak')) || 0;
 let lastDate = localStorage.getItem('pengwinMathLastDate');
 let currentSubject = null;
 
-// ... [All functions: updateStreak, subjects array, showSubjectSelection, showLesson, etc.] ...
+// Update streak
+function updateStreak(){
+    const today = new Date().toISOString().split('T')[0];
+    if(lastDate === today) return;
+    
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+    
+    if(lastDate === yesterdayStr){
+        streak++;
+    } else if(lastDate !== today){
+        streak = 1;
+    }
+    
+    lastDate = today;
+    localStorage.setItem('pengwinMathStreak', streak);
+    localStorage.setItem('pengwinMathLastDate', lastDate);
+    
+    document.getElementById("streak-counter").textContent = `🔥 ${streak} Day Streak`;
+}
 
-// (Use the complete script from the previous message)
+const subjects = [
+{
+    id: "arithmetic",
+    name: "Arithmetic",
+    lessons: [
+        {id:1, name:"Addition Mastery", equation:"7 + 5 = 12", intro:"Addition is the foundation of mathematics.", fullExplanation:`<p><strong>Addition</strong> means joining quantities.</p><div class="example">7 + 5: count on from 7.</div>`, why:"Everyday calculations.", curiosity:"Base-10 from fingers.", challengeQuestion:"23 + 48 = ?", challengeAnswer:"71", examples:["15+27=42"]},
+        {id:2, name:"Subtraction", equation:"12 - 5 = 7", intro:"Subtraction is inverse of addition.", fullExplanation:`<p>Removing quantity or finding difference.</p>`, why:"Change, differences.", curiosity:"Negative numbers extend it.", challengeQuestion:"45 - 27 = ?", challengeAnswer:"18", examples:["100-38=62"]},
+        {id:3, name:"Multiplication Basics", equation:"6 × 4 = 24", intro:"Repeated addition.", fullExplanation:`<p>6 groups of 4.</p>`, why:"Scaling and areas.", curiosity:"× symbol 1618.", challengeQuestion:"8 × 7 = ?", challengeAnswer:"56", examples:["5×9=45"]},
+        {id:4, name:"Division", equation:"24 ÷ 6 = 4", intro:"Splitting into equal groups.", fullExplanation:`<p>Sharing fairly.</p>`, why:"Rates and portions.", curiosity:"Division as inverse multiplication.", challengeQuestion:"36 ÷ 4 = ?", challengeAnswer:"9", examples:["100÷5=20"]},
+        {id:5, name:"Order of Operations", equation:"3 + 2 × 4 = 11", intro:"PEMDAS rules.", fullExplanation:`<p>Multiplication before addition.</p>`, why:"Correct calculations.", curiosity:"Why parentheses matter.", challengeQuestion:"10 - 2 × 3 = ?", challengeAnswer:"4", examples:["(8+2)×3=30"]}
+    ]
+},
+{
+    id: "prealgebra",
+    name: "Pre-Algebra",
+    lessons: [
+        {id:1, name:"Order of Operations", equation:"3 × (4 + 2) = 18", intro:"PEMDAS/BODMAS.", fullExplanation:`<p>Parentheses first.</p>`, why:"Prevents errors.", curiosity:"Parentheses history.", challengeQuestion:"5 × (2 + 7) = ?", challengeAnswer:"45", examples:[]},
+        {id:2, name:"Exponents", equation:"2³ = 8", intro:"Repeated multiplication.", fullExplanation:`<p>2×2×2.</p>`, why:"Growth and scaling.", curiosity:"Scientific notation.", challengeQuestion:"3⁴ = ?", challengeAnswer:"81", examples:["2^5=32"]},
+        {id:3, name:"Negative Numbers", equation:"-5 + 8 = 3", intro:"Numbers below zero.", fullExplanation:`<p>Direction on number line.</p>`, why:"Temperature, debt.", curiosity:"History of negatives.", challengeQuestion:"-12 + 7 = ?", challengeAnswer:"-5", examples:["-8 - (-3) = -5"]},
+        {id:4, name:"Fractions", equation:"1/2 + 1/4 = 3/4", intro:"Parts of a whole.", fullExplanation:`<p>Common denominator.</p>`, why:"Cooking, measurements.", curiosity:"Egyptian fractions.", challengeQuestion:"3/5 + 2/5 = ?", challengeAnswer:"1", examples:[]},
+        {id:5, name:"Decimals", equation:"0.75 × 4 = 3", intro:"Base-10 fractions.", fullExplanation:`<p>Easy multiplication.</p>`, why:"Money and metrics.", curiosity:"Repeating decimals.", challengeQuestion:"0.6 × 5 = ?", challengeAnswer:"3", examples:["1.25 + 0.75=2"]}
+    ]
+},
+{
+    id: "algebra",
+    name: "Algebra I",
+    lessons: [
+        {id:1, name:"Solving Simple Equations", equation:"x + 5 = 12", intro:"Working with unknowns.", fullExplanation:`<p>Balance method.</p>`, why:"Problem solving.", curiosity:"Why 'x'.", challengeQuestion:"x + 9 = 21", challengeAnswer:"12", examples:[]},
+        {id:2, name:"Distributive Property", equation:"3(x + 4) = 3x + 12", intro:"Expanding expressions.", fullExplanation:`<p>Multiply every term.</p>`, why:"Simplifying.", curiosity:"Area models.", challengeQuestion:"2(5 + y) = ?", challengeAnswer:"10 + 2y", examples:[]},
+        {id:3, name:"Inequalities", equation:"x > 7", intro:"Greater / less than.", fullExplanation:`<p>Number line representation.</p>`, why:"Ranges and constraints.", curiosity:"Flipping signs.", challengeQuestion:"x - 3 < 10", challengeAnswer:"x < 13", examples:[]},
+        {id:4, name:"Systems of Equations", equation:"x + y = 10, x - y = 4", intro:"Multiple variables.", fullExplanation:`<p>Addition / substitution.</p>`, why:"Real systems.", curiosity:"Linear algebra basis.", challengeQuestion:"x + y = 7, x - y = 3", challengeAnswer:"x=5, y=2", examples:[]},
+        {id:5, name:"Word Problems", equation:"Twice a number + 5 = 17", intro:"Translating words to math.", fullExplanation:`<p>Define variable first.</p>`, why:"Practical use.", curiosity:"Ancient word problems.", challengeQuestion:"3x + 4 = 19", challengeAnswer:"5", examples:[]}
+    ]
+},
+{
+    id: "geometry",
+    name: "Geometry",
+    lessons: [
+        {id:1, name:"Area of Circles", equation:"A = πr²", intro:"Geometry of circles.", fullExplanation:`<p>Pi from circumference.</p>`, why:"Design and physics.", curiosity:"Honeycomb hexagons.", challengeQuestion:"r=7, π≈3.14", challengeAnswer:"153.86", examples:[]},
+        {id:2, name:"Pythagorean Theorem", equation:"a² + b² = c²", intro:"Right triangles.", fullExplanation:`<p>Hypotenuse relation.</p>`, why:"Distances.", curiosity:"Pythagoras' cult.", challengeQuestion:"a=3, b=4, c=?", challengeAnswer:"5", examples:[]},
+        {id:3, name:"Angles & Triangles", equation:"180° sum", intro:"Triangle properties.", fullExplanation:`<p>Interior angles.</p>`, why:"Architecture.", curiosity:"Equilateral beauty.", challengeQuestion:"Right triangle angles?", challengeAnswer:"90,45,45 or 90,30,60", examples:[]},
+        {id:4, name:"Perimeter & Area", equation:"Rectangle P=2(l+w)", intro:"Boundaries and space.", fullExplanation:`<p>Optimization problems.</p>`, why:"Construction.", curiosity:"Isoperimetric inequality.", challengeQuestion:"Square side 5, area?", challengeAnswer:"25", examples:[]},
+        {id:5, name:"Volume", equation:"V = lwh", intro:"3D space.", fullExplanation:`<p>Cubes, prisms.</p>`, why:"Capacity and design.", curiosity:"Sphere volume derivation.", challengeQuestion:"Cube side 4, volume?", challengeAnswer:"64", examples:[]}
+    ]
+},
+{
+    id: "calculus",
+    name: "Calculus Intro",
+    lessons: [
+        {id:1, name:"Derivatives Basics", equation:"d/dx(x²)=2x", intro:"Rate of change.", fullExplanation:`<p>Instantaneous slope.</p>`, why:"Motion and optimization.", curiosity:"Newton & Leibniz.", challengeQuestion:"Derivative of position?", challengeAnswer:"Velocity", examples:[]},
+        {id:2, name:"Limits", equation:"lim x→2 (x²-4)/(x-2)", intro:"Approaching values.", fullExplanation:`<p>Behavior near points.</p>`, why:"Foundations of calculus.", curiosity:"Zeno's paradox.", challengeQuestion:"lim x→0 sin(x)/x = ?", challengeAnswer:"1", examples:[]},
+        {id:3, name:"Instantaneous Rate", equation:"Speed at exact moment", intro:"From average to instant.", fullExplanation:`<p>Tangent lines.</p>`, why:"Physics.", curiosity:"Velocity graphs.", challengeQuestion:"What is acceleration?", challengeAnswer:"Derivative of velocity", examples:[]},
+        {id:4, name:"Integrals Intro", equation:"∫x dx = x²/2 + C", intro:"Area under curve.", fullExplanation:`<p>Reverse of derivative.</p>`, why:"Accumulation.", curiosity:"Fundamental Theorem.", challengeQuestion:"Area under y=x from 0 to 2?", challengeAnswer:"2", examples:[]},
+        {id:5, name:"Optimization", equation:"Max/min problems", intro:"Real-world best values.", fullExplanation:`<p>Using derivatives.</p>`, why:"Business and engineering.", curiosity:"Calculus in AI.", challengeQuestion:"Basic idea of optimization?", challengeAnswer:"Find critical points", examples:[]}
+    ]
+}
+];
 
+function getRank(){
+    if(understanding >= 90) return "Master Thinker";
+    if(understanding >= 75) return "Advanced Explorer";
+    if(understanding >= 50) return "Skilled Learner";
+    if(understanding >= 25) return "Growing Mind";
+    return "Beginning Explorer";
+}
+
+function updateUnderstanding(){
+    const percent = Math.min(understanding, 100);
+    document.getElementById("understandingFill").style.width = percent + "%";
+    document.getElementById("understandingText").textContent = percent + "% • " + getRank();
+    localStorage.setItem('pengwinMathUnderstanding', understanding);
+}
+
+function showSubjectSelection(){
+    document.getElementById("subject-selection").style.display = "block";
+    document.getElementById("lesson-list").style.display = "none";
+    const grid = document.getElementById("subject-grid");
+    grid.innerHTML = "";
+    subjects.forEach(subject => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<h2>${subject.name}</h2><p>${subject.lessons.length} Lessons</p>`;
+        card.onclick = () => showSubjectLessons(subject);
+        grid.appendChild(card);
+    });
+}
+
+function showSubjectLessons(subject){
+    currentSubject = subject;
+    document.getElementById("subject-selection").style.display = "none";
+    document.getElementById("lesson-list").style.display = "block";
+    document.getElementById("current-subject-title").textContent = `${subject.name} — Choose Lesson`;
+    
+    const grid = document.getElementById("lesson-grid");
+    grid.innerHTML = "";
+    subject.lessons.forEach(lesson => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<div style="font-size:2.5rem;font-weight:800;color:var(--accent);">${lesson.id}</div><h2>${lesson.name}</h2>`;
+        card.onclick = () => showLesson(lesson);
+        grid.appendChild(card);
+    });
+}
+
+function backToSubjects(){
+    currentSubject = null;
+    showSubjectSelection();
+}
+
+function createLessonHTML(lesson){
+    return `
+        <h1 style="color:var(--accent);margin-bottom:0.5rem;">${lesson.name}</h1>
+        <p style="color:var(--muted);">${currentSubject.name} • Lesson ${lesson.id}</p>
+        <div class="lesson-section"><h3>Core Concept</h3><p>${lesson.intro}</p></div>
+        <div class="lesson-section"><h3>Key Equation</h3><div class="equation">\\(${lesson.equation}\\)</div></div>
+        <div class="lesson-section"><h3>Deep Explanation</h3>${lesson.fullExplanation}</div>
+        <div class="lesson-section"><h3>Why It Matters</h3><p>${lesson.why}</p></div>
+        <div class="lesson-section curiosity"><h3>Curiosity Card</h3><p>${lesson.curiosity}</p></div>
+        <div class="lesson-section"><h3>Practice Examples</h3>${lesson.examples.map(e=>`<div class="example">${e}</div>`).join('')}</div>
+        
+        <div class="lesson-section practice">
+            <h3>Mini Challenge</h3>
+            <p><strong>${lesson.challengeQuestion}</strong></p>
+            <div class="input-group">
+                <input type="text" id="challenge-input" placeholder="Your answer...">
+                <button onclick="submitChallenge(${lesson.id})">Check Answer</button>
+            </div>
+            <div id="challenge-feedback"></div>
+        </div>
+
+        <button class="start-btn" onclick="completeDiscovery(${lesson.id})" id="complete-btn" disabled>
+            Complete Lesson (+5 Understanding)
+        </button>
+        <button class="start-btn next-btn" onclick="nextLesson()" id="next-btn" style="display:none;">Next Lesson →</button>
+    `;
+}
+
+function showLesson(lesson){
+    document.getElementById("lesson-content").innerHTML = createLessonHTML(lesson);
+    document.getElementById("welcome-screen").style.display = "flex";
+    document.getElementById("next-btn").style.display = "none";
+    
+    setTimeout(() => {
+        if (window.MathJax) { MathJax.typesetClear(); MathJax.typeset(); }
+    }, 150);
+}
+
+function submitChallenge(lessonId){
+    const lesson = currentSubject.lessons.find(l => l.id === lessonId);
+    const input = document.getElementById("challenge-input").value.trim();
+    const feedbackEl = document.getElementById("challenge-feedback");
+    
+    if(!input){
+        feedbackEl.innerHTML = "Please enter an answer."; feedbackEl.className = "feedback error";
+        return;
+    }
+    
+    const correct = checkAnswer(input, lesson.challengeAnswer, feedbackEl);
+    if(correct){
+        document.getElementById("complete-btn").disabled = false;
+    }
+}
+
+function checkAnswer(user, correct, el){
+    if(Math.abs(parseFloat(user) - parseFloat(correct)) < 0.1){
+        el.innerHTML = `✅ Correct! You can now complete the lesson.`; el.className = "feedback success";
+        return true;
+    } else {
+        el.innerHTML = `❌ The correct answer is <strong>${correct}</strong>`; el.className = "feedback error";
+        return false;
+    }
+}
+
+function completeDiscovery(){
+    understanding += 5;
+    if(understanding > 100) understanding = 100;
+    updateUnderstanding();
+    alert("Excellent work! +5 Understanding earned.");
+    document.getElementById("complete-btn").style.display = "none";
+    document.getElementById("next-btn").style.display = "block";
+}
+
+function nextLesson(){
+    const currentLessonId = parseInt(document.getElementById("lesson-content").querySelector("p").textContent.match(/Lesson (\d+)/)[1]);
+    const nextLesson = currentSubject.lessons.find(l => l.id === currentLessonId + 1);
+    if(nextLesson){
+        closeLesson();
+        setTimeout(() => showLesson(nextLesson), 300);
+    } else {
+        alert("You've completed all lessons in this subject! Great job.");
+        closeLesson();
+        backToSubjects();
+    }
+}
+
+function closeLesson(){
+    document.getElementById("welcome-screen").style.display = "none";
+}
+
+// Initialize
 window.onload = () => {
     updateStreak();
     updateUnderstanding();
